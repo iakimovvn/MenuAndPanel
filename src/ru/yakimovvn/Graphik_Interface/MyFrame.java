@@ -5,6 +5,8 @@ import java.awt.*;
 
 public class MyFrame extends JFrame {
 
+    static final String TRIP_IMG_FILE = "./img/";
+
 
     CentralPanel centralPanel;
 
@@ -14,6 +16,9 @@ public class MyFrame extends JFrame {
         setLayout(new BorderLayout());
         setBounds(250,250,500,300);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+
+        MyToolBar toolBar = new MyToolBar(centralPanel,"Панель инструментов");
+        add(toolBar,BorderLayout.NORTH);
 
 
         centralPanel = new CentralPanel();

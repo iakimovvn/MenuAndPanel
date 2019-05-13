@@ -10,22 +10,25 @@ public class CentralPanel extends JPanel {
             {"irina","Ириночка"},
             {"masha","Машулька"},
             {"volodya","Володя"}};
-    private final String TRIP_IMG_FILE = "./img/";
     private final String TRIP_TXT_FILE = "./text/";
     private String[] txtFilesArr;
     private ImageIcon [] imageFilesArr;
-    JTextPane textPane;
+    private JTextPane textPane;
 
-    JLabel imageLbl;
+    Color [] centralPanelCollor = {Color.WHITE,Color.BLACK,Color.BLUE};
+
+    private JLabel imageLbl;
 
     int contentNow = 0;
+
+
 
 
 
     private ImageIcon [] createImageIconArr(){
         ImageIcon [] resultImageIconArr = new ImageIcon[nameFilesArr.length];
         for (int i = 0; i <resultImageIconArr.length; i++) {
-            resultImageIconArr[i] = new ImageIcon(TRIP_IMG_FILE+nameFilesArr[i][0]+".jpg");
+            resultImageIconArr[i] = new ImageIcon(MyFrame.TRIP_IMG_FILE+nameFilesArr[i][0]+".jpg");
         }
         return resultImageIconArr;
     }
@@ -40,7 +43,7 @@ public class CentralPanel extends JPanel {
     }
 
 
-    private void setContents(){
+     void setContents(){
         imageLbl.setIcon(imageFilesArr[contentNow]);
 
         try{
