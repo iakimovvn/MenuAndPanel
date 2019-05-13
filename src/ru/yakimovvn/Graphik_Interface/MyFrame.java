@@ -8,10 +8,11 @@ public class MyFrame extends JFrame {
     static final String TRIP_IMG_FILE = "./img/";
 
 
-    CentralPanel centralPanel;
+    private CentralPanel centralPanel;
 
     public MyFrame(String windowName){
         super(windowName);
+        centralPanel = new CentralPanel();
         setResizable(true);
         setLayout(new BorderLayout());
         setBounds(250,250,500,300);
@@ -21,7 +22,7 @@ public class MyFrame extends JFrame {
         add(toolBar,BorderLayout.NORTH);
 
 
-        centralPanel = new CentralPanel();
+
         add(centralPanel,BorderLayout.CENTER);
 
 
