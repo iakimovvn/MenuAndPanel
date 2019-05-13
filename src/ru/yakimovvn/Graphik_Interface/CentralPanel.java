@@ -33,7 +33,7 @@ public class CentralPanel extends JPanel {
     private String [] createTxtFilesArr(){
         String [] resultTxtFilesArr = new String[nameFilesArr.length];
         for (int i = 0; i <resultTxtFilesArr.length; i++) {
-            resultTxtFilesArr[i]= TRIP_TXT_FILE+nameFilesArr[i][0]+".txt";
+            resultTxtFilesArr[i]= "file:"+TRIP_TXT_FILE+nameFilesArr[i][0]+".txt";
 
         }
         return resultTxtFilesArr;
