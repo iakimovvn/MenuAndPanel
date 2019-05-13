@@ -5,8 +5,8 @@ import java.awt.*;
 
 public class MyFrame extends JFrame {
 
-    static final String TRIP_FILE = "./img/";
-    CentralPanel panel;
+
+    CentralPanel centralPanel;
 
     public MyFrame(String windowName){
         super(windowName);
@@ -16,13 +16,21 @@ public class MyFrame extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 
+        centralPanel = new CentralPanel();
+        add(centralPanel,BorderLayout.CENTER);
+
+
         JButton closeButton = new JButton("CLOSE");
-        closeButton.setSize(new Dimension(100,30));
+        JPanel panelForButtonClose = new JPanel();
+        panelForButtonClose.setLayout(new GridLayout(1,3));
         closeButton.addActionListener(e -> System.exit(0));
         closeButton.setFocusPainted(false);
         closeButton.setOpaque(true);
         closeButton.setContentAreaFilled(true);
-        add(closeButton,BorderLayout.SOUTH);
+        panelForButtonClose.add(new JLabel());
+        panelForButtonClose.add(closeButton);
+        panelForButtonClose.add(new JLabel());
+        add(panelForButtonClose,BorderLayout.SOUTH);
 
         setVisible(true);
 
