@@ -6,7 +6,6 @@ import java.awt.*;
 public class MyToolBar extends JToolBar {
 
     private CentralPanel centralPanel;
-    private int contentNow;
 
     public MyToolBar(CentralPanel centralPanel,String nameToolBar){
         super(nameToolBar);
@@ -19,16 +18,21 @@ public class MyToolBar extends JToolBar {
 
         });
 
-        this.contentNow  = centralPanel.getContentNow();
 
         ToolBarButton back = new ToolBarButton("back");
         back.setToolTipText("Назад");
-        back.addActionListener(e->centralPanel.setContentNow((contentNow ==0)?2:(--contentNow)));
-
+        back.addActionListener(e->{
+                int contentNow=centralPanel.getContentNow();
+                centralPanel.setContentNow((contentNow ==0)?2:(--contentNow));
+                });
 
         ToolBarButton front = new ToolBarButton("front");
         front.setToolTipText("Вперед");
-        front.addActionListener(e->centralPanel.setContentNow((contentNow ==2)?0:(++contentNow)));
+        front.addActionListener(e->{
+            int contentNow=centralPanel.getContentNow();
+            centralPanel.setContentNow((contentNow ==2)?0:(++contentNow));
+
+        });
 
         ToolBarButton close = new ToolBarButton("close");
         close.setToolTipText("Закрыть");
