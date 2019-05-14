@@ -23,16 +23,21 @@ public class MyToolBar extends JToolBar {
         back.setToolTipText("Назад");
         back.addActionListener(e->{
                 int contentNow=centralPanel.getContentNow();
-                centralPanel.setContentNow((contentNow ==0)?2:(--contentNow));
+                centralPanel.setContentNow((contentNow ==0)?centralPanel.nameFilesArr.length-1:(--contentNow));
                 });
 
         ToolBarButton front = new ToolBarButton("front");
         front.setToolTipText("Вперед");
         front.addActionListener(e->{
-            int contentNow=centralPanel.getContentNow();
-            centralPanel.setContentNow((contentNow ==2)?0:(++contentNow));
+            centralPanel.setContentNow((centralPanel.getContentNow()+1) % centralPanel.nameFilesArr.length);
 
         });
+
+        ToolBarButton save = new ToolBarButton("save");
+        save.setToolTipText("Созранить");
+        save.setActionCommand("save");
+        save.addActionListener(centralPanel);
+
 
         ToolBarButton close = new ToolBarButton("close");
         close.setToolTipText("Закрыть");
@@ -43,6 +48,7 @@ public class MyToolBar extends JToolBar {
         add(home);
         add(back);
         add(front);
+        add(save);
         add(close);
 
     }

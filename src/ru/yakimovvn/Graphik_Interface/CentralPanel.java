@@ -4,9 +4,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 
-public class CentralPanel extends JPanel  implements ActionListener {
+public class CentralPanel extends JPanel  implements ActionListener  {
 
      String [][] nameFilesArr = {
             {"irina","Ириночка"},
@@ -25,15 +27,29 @@ public class CentralPanel extends JPanel  implements ActionListener {
 
     public void actionPerformed(ActionEvent e){
         if(e.getActionCommand().equals("close"))System.exit(0);
+        if(e.getActionCommand().equals("save"))saveTextInFile();
         else setContentNow(Integer.parseInt(e.getActionCommand()));
     }
 
-    public void setContentNow(int contentNow){
+    private void saveTextInFile (){
+        try {
+            PrintWriter printWriter = new PrintWriter(new FileWriter(txtFilesArr[contentNow]),false);
+            printWriter.println(textPane.getText());
+            printWriter.close();
+        }catch(IOException err){
+            JOptionPane.showMessageDialog(null,
+                    "Произошла ошибка","Ошибка",JOptionPane.ERROR_MESSAGE);
+
+        }
+
+    }
+
+    void setContentNow(int contentNow){
         this.contentNow = contentNow;
         setContents();
     }
 
-    public int getContentNow(){
+    int getContentNow(){
         return this.contentNow;
     }
 
@@ -50,7 +66,7 @@ public class CentralPanel extends JPanel  implements ActionListener {
     private String [] createTxtFilesArr(){
         String [] resultTxtFilesArr = new String[nameFilesArr.length];
         for (int i = 0; i <resultTxtFilesArr.length; i++) {
-            resultTxtFilesArr[i]= "file:"+TRIP_TXT_FILE+nameFilesArr[i][0]+".txt";
+            resultTxtFilesArr[i]= TRIP_TXT_FILE+nameFilesArr[i][0]+".txt";
 
         }
         return resultTxtFilesArr;
@@ -61,7 +77,7 @@ public class CentralPanel extends JPanel  implements ActionListener {
         imageLbl.setIcon(imageFilesArr[contentNow]);
 
         try{
-            textPane.setPage(txtFilesArr[contentNow]);
+            textPane.setPage("file:"+txtFilesArr[contentNow]);
         }catch(IOException err){
             textPane.setText("Файл не найден");
         }
@@ -96,9 +112,21 @@ public class CentralPanel extends JPanel  implements ActionListener {
         imageLbl.setComponentPopupMenu(imageLblPopupMenu);
         add(imageLbl);
 
+
+        JPopupMenu textPopup = new JPopupMenu();
+        JMenuItem copy = new JMenuItem("Сковировать");
+        JMenuItem paste = new JMenuItem("Вставить");
+        JMenuItem cut = new JMenuItem("Вырезать");
+        JMenuItem selectAll = new JMenuItem("Выделить все");
+        textPopup.add(paste);
+        textPopup.add(copy);
+        textPopup.add(cut);
+        textPopup.add(selectAll);
+
         JScrollPane scrollPane = new JScrollPane();
         textPane = new JTextPane();
-        textPane.setEditable(false);
+        textPane.setComponentPopupMenu(textPopup);
+        textPane.setEditable(true);
         scrollPane.getViewport().add(textPane);
         setContents();
         add(scrollPane);
