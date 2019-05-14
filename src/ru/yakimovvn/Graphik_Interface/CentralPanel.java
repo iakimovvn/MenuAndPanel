@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public class CentralPanel extends JPanel {
 
-    private String [][] nameFilesArr = {
+     String [][] nameFilesArr = {
             {"irina","Ириночка"},
             {"masha","Машулька"},
             {"volodya","Володя"}};
@@ -15,11 +15,13 @@ public class CentralPanel extends JPanel {
     private ImageIcon [] imageFilesArr;
     private JTextPane textPane;
 
-    Color [] centralPanelCollor = {Color.WHITE,Color.BLACK,Color.BLUE};
+    Color [] centralPanelColor = {Color.WHITE,Color.BLACK,Color.BLUE};
 
     private JLabel imageLbl;
 
     int contentNow = 0;
+
+
 
 
 

@@ -21,6 +21,9 @@ public class MyFrame extends JFrame {
         MyToolBar toolBar = new MyToolBar(centralPanel,"Панель инструментов");
         add(toolBar,BorderLayout.NORTH);
 
+        MyMenuBar menuBar = new MyMenuBar(centralPanel);
+        setJMenuBar(menuBar);
+
 
 
         add(centralPanel,BorderLayout.CENTER);
