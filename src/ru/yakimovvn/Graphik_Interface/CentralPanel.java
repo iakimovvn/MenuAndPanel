@@ -87,6 +87,13 @@ public class CentralPanel extends JPanel  implements ActionListener {
             imageLblPopupMenu.add(imageLblPopupMenuItems[i]);
 
         }
+
+        imageLblPopupMenu.addSeparator();
+        JMenuItem closePopup = new JMenuItem("Закрыть",new ImageIcon(MyFrame.TRIP_IMG_FILE+"close"+".png"));
+        closePopup.setActionCommand("close");
+        closePopup.addActionListener(this);
+        imageLblPopupMenu.add(closePopup);
+        imageLbl.setComponentPopupMenu(imageLblPopupMenu);
         add(imageLbl);
 
         JScrollPane scrollPane = new JScrollPane();
