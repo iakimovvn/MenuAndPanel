@@ -2,9 +2,11 @@ package ru.yakimovvn.Graphik_Interface;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 
-public class CentralPanel extends JPanel {
+public class CentralPanel extends JPanel  implements ActionListener {
 
      String [][] nameFilesArr = {
             {"irina","Ириночка"},
@@ -19,11 +21,21 @@ public class CentralPanel extends JPanel {
 
     private JLabel imageLbl;
 
-    int contentNow = 0;
+    private int contentNow = 0;
 
+    public void actionPerformed(ActionEvent e){
+        if(e.getActionCommand().equals("close"))System.exit(0);
+        else setContentNow(Integer.parseInt(e.getActionCommand()));
+    }
 
+    public void setContentNow(int contentNow){
+        this.contentNow = contentNow;
+        setContents();
+    }
 
-
+    public int getContentNow(){
+        return this.contentNow;
+    }
 
 
 
@@ -65,6 +77,16 @@ public class CentralPanel extends JPanel {
 
         imageLbl = new JLabel();
         imageLbl.setHorizontalAlignment(JLabel.CENTER);
+
+        JPopupMenu imageLblPopupMenu = new JPopupMenu();
+        JMenuItem [] imageLblPopupMenuItems = new JMenuItem[nameFilesArr.length];
+        for (int i = 0; i < nameFilesArr.length; i++) {
+            imageLblPopupMenuItems [i]= new JMenuItem(nameFilesArr[i][1]);
+            imageLblPopupMenuItems[i].setActionCommand(Integer.toString(i));
+            imageLblPopupMenuItems[i].addActionListener(this);
+            imageLblPopupMenu.add(imageLblPopupMenuItems[i]);
+
+        }
         add(imageLbl);
 
         JScrollPane scrollPane = new JScrollPane();

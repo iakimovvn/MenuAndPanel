@@ -32,7 +32,8 @@ public class MyFrame extends JFrame {
         JButton closeButton = new JButton("CLOSE");
         JPanel panelForButtonClose = new JPanel();
         panelForButtonClose.setLayout(new GridLayout(1,3));
-        closeButton.addActionListener(e -> System.exit(0));
+        closeButton.setActionCommand("close");
+        closeButton.addActionListener(centralPanel);
         closeButton.setFocusPainted(false);
         closeButton.setOpaque(true);
         closeButton.setContentAreaFilled(true);

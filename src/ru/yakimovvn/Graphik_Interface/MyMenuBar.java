@@ -6,13 +6,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
-public class MyMenuBar extends JMenuBar implements ActionListener {
+public class MyMenuBar extends JMenuBar {
     private CentralPanel centralPanel;
 
-    public void actionPerformed(ActionEvent e){
-        centralPanel.contentNow = Integer.parseInt(e.getActionCommand());
-        centralPanel.setContents();
-    }
 
     public MyMenuBar(CentralPanel centralPanel){
 
@@ -23,7 +19,7 @@ public class MyMenuBar extends JMenuBar implements ActionListener {
         for (int i = 0; i <centralPanel.nameFilesArr.length ; i++) {
             contentItem[i] = new JMenuItem(centralPanel.nameFilesArr[i][1]);
             contentItem[i].setActionCommand(Integer.toString(i));
-            contentItem[i].addActionListener(this);
+            contentItem[i].addActionListener(centralPanel);
             content.add(contentItem[i]);
             if(i<centralPanel.nameFilesArr.length-1)content.addSeparator();
 
@@ -76,7 +72,8 @@ public class MyMenuBar extends JMenuBar implements ActionListener {
         program.addSeparator();
 
         JMenuItem exit = new JMenuItem("Выход",new ImageIcon(MyFrame.TRIP_IMG_FILE+"close.png"));
-        exit.addActionListener(e->System.exit(0));
+        exit.setActionCommand("close");
+        exit.addActionListener(centralPanel);
         program.add(exit);
 
         add(program);
