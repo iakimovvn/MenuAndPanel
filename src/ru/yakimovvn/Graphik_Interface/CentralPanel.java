@@ -1,6 +1,8 @@
 package ru.yakimovvn.Graphik_Interface;
 
 import javax.swing.*;
+import javax.swing.text.DefaultEditorKit;
+import javax.swing.text.EditorKit;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -114,13 +116,21 @@ public class CentralPanel extends JPanel  implements ActionListener  {
 
 
         JPopupMenu textPopup = new JPopupMenu();
-        JMenuItem copy = new JMenuItem("Сковировать");
+        EditorKit editorKit = new DefaultEditorKit();
+        JMenuItem copy = new JMenuItem("Копировать");
+        copy.addActionListener(editorKit.getActions()[8]);
         JMenuItem paste = new JMenuItem("Вставить");
+        paste.addActionListener(editorKit.getActions()[9]);
         JMenuItem cut = new JMenuItem("Вырезать");
+        cut.addActionListener(editorKit.getActions()[7]);
+        JMenuItem delete = new JMenuItem("Удалить");
+        delete.addActionListener(editorKit.getActions()[1]);
         JMenuItem selectAll = new JMenuItem("Выделить все");
+        selectAll.addActionListener(editorKit.getActions()[51]);
         textPopup.add(paste);
         textPopup.add(copy);
         textPopup.add(cut);
+        textPopup.add(delete);
         textPopup.add(selectAll);
 
         JScrollPane scrollPane = new JScrollPane();
