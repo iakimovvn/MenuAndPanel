@@ -64,7 +64,7 @@ public class MyMenuBar extends JMenuBar {
         JMenu program = new JMenu("Программа");
 
         JMenuItem aboutProgram = new JMenuItem("О программе");
-        aboutProgram.addActionListener(e->JOptionPane.showMessageDialog(null,
+        aboutProgram.addActionListener(e->JOptionPane.showMessageDialog(this,
                 "В этой программе используется панель меню,\nи панель инструментов",
                 "О Программе",JOptionPane.INFORMATION_MESSAGE));
         program.add(aboutProgram);

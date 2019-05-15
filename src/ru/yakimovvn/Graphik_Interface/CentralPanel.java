@@ -30,7 +30,7 @@ public class CentralPanel extends JPanel  implements ActionListener  {
     public void actionPerformed(ActionEvent e){
         if(e.getActionCommand().equals("close"))System.exit(0);
         if(e.getActionCommand().equals("save"))saveTextInFile();
-        else setContentNow(Integer.parseInt(e.getActionCommand()));
+        else setContentNow(Integer.parseInt(((JMenuItem)e.getSource()).getActionCommand()));
     }
 
     private void saveTextInFile (){
@@ -39,7 +39,7 @@ public class CentralPanel extends JPanel  implements ActionListener  {
             printWriter.println(textPane.getText());
             printWriter.close();
         }catch(IOException err){
-            JOptionPane.showMessageDialog(null,
+            JOptionPane.showMessageDialog(this,
                     "Произошла ошибка","Ошибка",JOptionPane.ERROR_MESSAGE);
 
         }
